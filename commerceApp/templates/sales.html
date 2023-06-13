@@ -1,0 +1,101 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        <link rel="stylesheet" type="text/css" href="{% static  'p1.css' %}">
+        <title>ECommerce Tutorial</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+       
+
+    </head>
+
+    {% csrf_token%}
+    <body>
+        
+       <section id="header">
+       <a href="#"><img src="{% static  'img/logo.png' %}"   class="logo" alt=""></a>
+       <div>
+           <ul id="navbar">
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+               <li><a href="{% url 'shop' %}">Shop</a></li>
+               <li><a href="{% url 'blog' %}">Blog</a></li>
+               <li><a href="{% url 'about' %}">About</a></li>
+               <li><a href="{% url 'contacts' %}">Contacts</a></li>
+               <li id="lg-bag"><a href="{% url 'cart' %}"><i class="far fa-shopping-bag"></i></a></li>
+               <a href="#" id="close"><i class="far fa-times"></i></a>
+               
+           </ul>
+       </div>
+       <div id="mobile">
+        
+        <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+       </div>
+    </section> 
+    <section id="page-header" class="about-header">
+        
+        <h2>#lets_talk</h2>
+        
+        <p>LEAVE A MESSAGE, We love to here from you!</p>
+    
+        
+    </section>
+   
+    <section id="cart" class="section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>description</td>
+                    <td>date_starts</td>
+                    <td>date_ends</td>
+                    <td>offer</td>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="color: brown;">
+                    {% if context %}
+                      
+                      {% for product in context %}
+                      <td><h3>{{ product.name }}</h3></td>
+                      <td><h3> {{ product.description }}</h3></td>
+                      <td><h3>{{ product.date_starts }}</h3></td>
+                      <td><h3>{{ product.date_ends }}</h3></td>
+                      <td><span style="color: red;"><h3>{{ product.offer }}</h3></span></td>
+
+                      
+                        
+                      
+                      
+                  </tr>
+
+                    {% endfor %}
+                    {% else %}
+  <p>Your cart is empty.</p>
+{% endif %}
+
+               
+                
+            </tbody>
+        </table>
+    </section>
+
+
+
+   
+   
+
+
+
+
+   
+</footer>
+    <script src="p1.js"></script>
+    </body>
+</html>

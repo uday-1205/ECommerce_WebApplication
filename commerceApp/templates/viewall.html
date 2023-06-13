@@ -1,0 +1,53 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'p1.css'%}">
+</head>
+{% csrf_token%}
+<body >
+    <section id="header">
+        <a href="#"><img src="img/logo.png"   class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+                
+            </ul>
+        </div>
+        <div id="mobile">
+         
+         <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+         <i id="bar" class="fas fa-outdent"></i>
+        </div>
+     </section> 
+
+    <section id="product1" class="section-p1">
+        <h2>Featured Products</h2>
+        <p>Summer Collection New Modern Design</p>
+        <div class="pro-container">
+        
+            {% for newwear in context %}
+            <div class="pro">
+                <img src="{{newwear.image}}" alt="{{newwear.name}}" >
+    <h3>{{newwear.name}}</h3>
+    <p><b>description:</b>{{newwear.description}}</p>
+    <p>Rating: {{newwear.rating}}</p>
+    <p>Cost: {{newwear.cost}}</p>
+    
+    </div>
+    {% endfor %}
+    </div>
+    
+    </section>
+    
+</body>
+</html>

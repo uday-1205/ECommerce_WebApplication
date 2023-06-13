@@ -1,0 +1,188 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        <link rel="stylesheet" type="text/css" href="{% static  'p1.css' %}">
+        <title>ECommerce Tutorial</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+       
+
+    </head>
+    {% csrf_token%}
+    <body>
+        
+       <section id="header">
+       <a href="#"><img src="{% static  'img/logo.png' %}"   class="logo" alt=""></a>
+       <div>
+           <ul id="navbar">
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+               <li><a href="{% url 'shop' %}">Shop</a></li>
+               <li><a href="{% url 'blog' %}">Blog</a></li>
+               <li><a href="{% url 'about' %}">About</a></li>
+               <li><a href="{% url 'contacts' %}">Contacts</a></li>
+               <li id="lg-bag"><a href="{% url 'cart' %}"><i class="far fa-shopping-bag"></i></a></li>
+               <a href="#" id="close"><i class="far fa-times"></i></a>
+               
+           </ul>
+       </div>
+       <div id="mobile">
+        
+        <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+       </div>
+    </section> 
+    <section id="page-header" class="about-header">
+        
+        <h2>#lets_talk</h2>
+        
+        <p>LEAVE A MESSAGE, We love to here from you!</p>
+    
+        
+    </section>
+    var tprice=0;
+    <section id="cart" class="section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% if cart_products %}
+                      
+                      {% for product in cart_products %}
+                      
+                        <td><a href=""><i class="far fa-times-circle"></i></a></td>
+                   
+                        
+                        <td><img src="{{ product.image }}" alt="{{ product.name }}"></td>
+                        <td><h3>{{ product.name }}</h3></td>
+                        <td><p>Price: {{ product.price }}</p></td> 
+                        <td>
+                          <input type="number" value="1" >
+                        </td>
+                        <td><p>Subtotal: <span id="subtotal-{{ product.id }}">{{ product.price }}</span></p></td>
+                      
+                      
+                  </tr>
+
+                    {% endfor %}
+                    {% else %}
+  <p>Your cart is empty.</p>
+{% endif %}
+
+               
+                
+            </tbody>
+        </table>
+    </section>
+
+
+
+    <section id="cart-add" class="section-p1">
+        <div id="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter your Coupon">
+                <button class="normal">Apply</button>
+            </div>
+        </div>
+
+        <div id="subtotal">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>Cart subtotals</td>
+                    <td>$355</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Total</strong>
+                    </td>
+                    <td><strong>tprice</strong></td>
+                </tr>
+            </table>
+            <button class="normal">proceed to checkout</button>
+        </div>
+    </section>
+   
+
+
+
+
+<footer class="section-p1">
+    <div class="col">
+        <img class="logo" src="{% static  'img/logo.png' %}" alt="">
+        <h4>Contact</h4>
+        <p><strong>Address</strong>: 1-114,kothavalasa,vzm,535183</p>
+        <p><strong>Phone</strong>: +91 7993372431</p>
+        <p><strong>Hours</strong>:24 hours days: sun-mon</p>
+    </div>
+    <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-pinterest"></i>
+        <i class="fab fa-youtube"></i>
+        </div>
+    </div>
+
+
+    <div class="col">
+        <h4>About</h4>
+        <a href='#'>About Us</a>
+        <a href='#'>Delivery Information</a>
+        <a href='#'>privacy policy</a>
+        <a href='#'>Terms and Conditions</a> 
+        <a href='#'>Contact Us</a>       
+
+    </div>
+
+
+    <div class="col">
+        <h4>Account</h4>
+        <a href='#'>Sign in</a>
+        <a href='#'>View Cart</a>
+        <a href='#'>My Wishlist</a>
+        <a href='#'>Track My Order</a> 
+        <a href='#'>Help</a>       
+
+    </div>
+
+
+    <div class="col install">
+        <h4>Install App</h4>
+        <p>From playstore or Appstore</p>
+        <div class="row">
+           <img src="{% static  'img/pay/app.jpg' %}" alt="">
+           <img src="{% static  'img/pay/play.jpg' %}" alt="">
+
+        </div>
+        <p>secure payment getway</p>
+        <img src="{% static  'img/pay/pay.png' %}" alt="">
+    </div>
+
+    <div class="copyright">
+        <p>2021, Tech2 etc - HTML CSS ECommerce Template</p>
+    </div>
+</footer>
+    <script src="p1.js"></script>
+    </body>
+</html>
